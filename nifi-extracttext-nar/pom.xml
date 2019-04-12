@@ -19,11 +19,10 @@
     <parent>
         <groupId>com.dataflowdeveloper</groupId>
         <artifactId>extracttext-processor</artifactId>
-        <version>1.5</version>
+        <version>1.8</version>
     </parent>
 
     <artifactId>nifi-extracttext-nar</artifactId>
-    <version>1.5</version>
     <packaging>nar</packaging>
     <properties>
         <maven.javadoc.skip>true</maven.javadoc.skip>
@@ -34,7 +33,7 @@
         <dependency>
             <groupId>com.dataflowdeveloper</groupId>
             <artifactId>nifi-extracttext-processors</artifactId>
-            <version>1.5</version>
+            <version>1.8</version>
         </dependency>
     </dependencies>
 
