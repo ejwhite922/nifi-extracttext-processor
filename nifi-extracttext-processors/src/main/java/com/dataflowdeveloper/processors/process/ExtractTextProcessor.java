@@ -46,6 +46,7 @@ import org.apache.nifi.annotation.documentation.Tags;
 import org.apache.nifi.annotation.lifecycle.OnScheduled;
 import org.apache.nifi.components.PropertyDescriptor;
 import org.apache.nifi.flowfile.FlowFile;
+import org.apache.nifi.flowfile.attributes.CoreAttributes;
 import org.apache.nifi.processor.AbstractProcessor;
 import org.apache.nifi.processor.ProcessContext;
 import org.apache.nifi.processor.ProcessSession;
@@ -209,6 +210,7 @@ public class ExtractTextProcessor extends AbstractProcessor {
 						{
 							put("mime.type", TEXT_HTML);
 							put("orig.mime.type", type.get());
+							put(CoreAttributes.FILENAME.key(), updateFilename(filename, ".html"));
 						}
 					};
 				} else {
@@ -216,6 +218,7 @@ public class ExtractTextProcessor extends AbstractProcessor {
 						{
 							put("mime.type", TEXT_PLAIN);
 							put("orig.mime.type", type.get());
+							put(CoreAttributes.FILENAME.key(), updateFilename(filename, ".txt"));
 						}
 					};
 				}
@@ -231,5 +234,12 @@ public class ExtractTextProcessor extends AbstractProcessor {
 			session.transfer(flowFile, REL_FAILURE);
 			throw t;
 		}
+	}
+
+	private static String updateFilename(String filename, String newExtension) {
+		if (!filename.endsWith(newExtension)) {
+			return filename + newExtension;
+		}
+		return filename;
 	}
 }
