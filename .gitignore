@@ -1,9 +1,10 @@
-/target/
-/target/*.*
-/.settings/
+target/
+bin/
+.settings/
 .DS_Store
 .springBeans
 .project
+.classpath
 /src/main/resources/application.yml
 /src/main/resources/application.properties
 application.*
